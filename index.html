@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="Felt interactive experience"/>
+<meta name="viewport" content="width=660, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+<style type="text/css">
+/* Keep the game's original 640 x 480 coordinate system on every device.
+   Mobile browsers scale this fixed-width page to the phone's screen. */
+html, body {
+    margin: 0;
+    padding: 0;
+    min-width: 660px;
+    min-height: 100%;
+    background: transparent;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+#wrapper {
+    width: 660px;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+#border {
+    width: 650px;
+    height: 490px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 5px;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+}
+
+#canvas {
+    position: relative;
+    width: 640px;
+    height: 480px;
+}
+
+#MMFCanvas {
+    display: block;
+    width: 640px;
+    height: 480px;
+    border: 0;
+    outline: 0;
+    box-shadow: none;
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Preserve the custom font for Clickteam's form controls. */
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('Compagnon-Bold.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+select, input, button, textarea {
+    font-family: 'MyCustomFont', sans-serif !important;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+/* Allow text fields to receive taps and normal text selection/input. */
+input, textarea, select, button {
+    touch-action: manipulation;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+</style>
+
+  <title>Felt</title>
+
+	<script>
+	   	// Detection of old browsers that do not support the canvas element
+		// Falls back to a default page
+	    if (!document.createElement("canvas").getContext)
+	    {
+			window.open("http://www.clickteam.com/html5-fallback", "_self");
+		}
+	</script>
+	
+  	<!-- EXTRASOURCES -->
+	<!-- Loads the Javascript code...-->
+  	<script src="src/Runtime.js"></script>
+  	
+  <script>
+
+	// Detects if the html file is ran locally.
+	// You can remove this code for the final version
+	if (window.location.protocol == "file:")
+	{
+		document.write('<div id="bloctxt">');
+		document.write('<h1>The application cannot be run...</h1>');
+		document.write('<p>HTML browsers do not allow you to launch data files directly from the file system.<br>');
+		document.write('A drag & drop of the html file on a web-browser window will not work, on any machine.<br>');
+		document.write('Please use the Build & Run option (it opens a local web server) to run your application,<br>') 
+		document.write('or upload your application folder to a remote web-server, and start it from there...</p>');
+		document.write('</div>');
+		throw new error("Cannot run application");
+	}
+  </script>
+</head>
+
+<!-- This is where we create the Canvas element that will contain the application...-->
+<body>
+    <div id="wrapper">
+	    <div id="border">
+		    <div id="canvas">
+			    <canvas id="MMFCanvas" width="640" height="480">
+				    <p>Your browser does not support Canvas.</p>
+			    </canvas>   
+		    </div>
+	    </div>
+    </div>  
+    <script>
+        // RUNTIMESTART
+        // This is where the HTML5 runtime is actually started
+	    window.addEventListener("load", windowLoaded, false);
+	    function windowLoaded()
+	    {
+		    // Calls the runtime
+		    // First parameter : name of the canvas element
+		    // Second parameter : path to the cch file. Images and sounds must lay beside this file
+		    new Runtime("MMFCanvas", "resources/Try1.cch");
+	    }
+        // RUNTIMESTARTEND
+    </script>
+ 
+</body>
+</html>
